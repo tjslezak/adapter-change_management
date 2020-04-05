@@ -53,7 +53,7 @@ class ServiceNowConnector {
    *
    * @param {iapCallback} callback - Callback a function.
    * @param {(object|string)} callback.data - The API's response. Will be an object if sunnyday path.
-   *   Will be HTML text if hibernating instance.
+   *   Will be HTML text if Instance Hibernating page.
    * @param {error} callback.error - The error property of callback.
    */
   get(callback) {
@@ -91,14 +91,14 @@ constructUri(serviceNowTable, query = null) {
  * @return {boolean} Returns true if instance is hibernating. Otherwise returns false.
  */
 isHibernating(response) {
-  return response.body.includes('Hibernating Instance')
+  return response.body.includes('Instance Hibernating page')
   && response.body.includes('<html>')
   && response.statusCode === 200;
 }
 /**
  * @function processRequestResults
  * @description Inspect ServiceNow API response for an error, bad response code, or
- *   a hibernating instance. If any of those conditions are detected, return an error.
+ *   a Instance Hibernating page. If any of those conditions are detected, return an error.
  *   Else return the API's response.
  *
  * @param {error} error - The error argument passed by the request function in its callback.
@@ -106,7 +106,7 @@ isHibernating(response) {
  * @param {string} body - The HTML body argument passed by the request function in its callback.
  * @param {iapCallback} callback - Callback a function.
  * @param {(object|string)} callback.data - The API's response. Will be an object if sunnyday path.
- *   Will be HTML text if hibernating instance.
+ *   Will be HTML text if Instance Hibernating page.
  * @param {error} callback.error - The error property of callback.
  */
 processRequestResults(error, response, body, callback) {
@@ -115,7 +115,7 @@ processRequestResults(error, response, body, callback) {
    * Study your package and note which parts of the get()
    * and post() functions evaluate and respond to data
    * and/or errors the request() function returns.
-   * This function must not check for a hibernating instance;
+   * This function must not check for a Instance Hibernating page;
    * it must call function isHibernating.
    */
 let callbackData = null;
@@ -149,7 +149,7 @@ return callback(callbackData, callbackError);
  * @param {string} callOptions.method - HTTP API request method.
  * @param {iapCallback} callback - Callback a function.
  * @param {(object|string)} callback.data - The API's response. Will be an object if sunnyday path.
- *   Will be HTML text if hibernating instance.
+ *   Will be HTML text if Instance Hibernating page.
  * @param {error} callback.error - The error property of callback.
  */
 sendRequest(callOptions, callback) {
@@ -183,7 +183,7 @@ uri: this.uri
  * @param {string} callOptions.serviceNowTable - The table target of the ServiceNow table API.
  * @param {iapCallback} callback - Callback a function.
  * @param {(object|string)} callback.data - The API's response. Will be an object if sunnyday path.
- *   Will be HTML text if hibernating instance.
+ *   Will be HTML text if Instance Hibernating page.
  * @param {error} callback.error - The error property of callback.
  */
 post(callOptions, callback) {
