@@ -116,7 +116,7 @@ healthcheck(callback) {
       * for the callback's errorMessage parameter.
       */
         this.emitOffline();
-        log.error(`ServiceNow: Instance is unavailable and OFFLINE!  ID: stever. Adapater ID: ${this.id}, Error Detail: ${JSON.stringify(error)}`); // for debugging
+        log.error(`ServiceNow: Instance is unavailable and OFFLINE! User: ${this.props.auth.username} Adapter ID: ${this.id}, Error Detail: ${JSON.stringify(error)}`); // for debugging
             if (callback) {
             callback(errorMessage);
             }         
@@ -132,7 +132,7 @@ healthcheck(callback) {
       * responseData parameter.
       */
         this.emitOnline()
-        // log.info(`ServiceNow: Instance is available.  ID: stever ${JSON.stringify(result)}`); // for debugging
+        // log.info(`ServiceNow: Instance is available.  ID:  ${JSON.stringify(result)}`); // for debugging
           if (callback) {
              callback(responseData);
           }        
@@ -152,7 +152,7 @@ healthcheck(callback) {
   emitOffline() {
     this.emitStatus('OFFLINE');
     // log.warn('ServiceNow: Instance is unavailable.');
-    log.error(`ServiceNow: Instance is unavailable and OFFLINE!.  ID: stever ${this.id}`); // for debugging
+    log.error(`ServiceNow: Instance is unavailable and OFFLINE!.  ID: ${this.id}`); // for debugging
   }
 
   /**
@@ -165,7 +165,7 @@ healthcheck(callback) {
   emitOnline() {
     this.emitStatus('ONLINE');
     // log.info('ServiceNow: Instance is available.');
-    log.info(`ServiceNow: Instance is available and ONLINE!.  ID: stever ${this.id}`) // + String(this.id)); //+ this.id);
+    log.info(`ServiceNow: Instance is available and ONLINE!.  ID: ${this.id}`) // + String(this.id)); //+ this.id);
   }
 
   /**
